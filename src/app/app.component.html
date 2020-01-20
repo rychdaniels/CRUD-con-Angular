@@ -1,0 +1,171 @@
+
+  <div class="container app">
+    
+    <div class="row">
+      
+      <div class="col-sm-8">
+        <h1 class="text-center">
+          {{ title }}
+        </h1>
+      </div>
+      
+      <div class="col-sm-4">
+        <div class="alert alert-success alert-dismissable" *ngIf="msg">
+          <a href="#" class="close" (click)="closeAlert()">
+            &times;
+          </a>
+          {{ msg }}
+        </div>
+      </div>     
+      
+    </div>
+
+    <div class="row">
+      
+      <div class="col-sm-4">
+        <img width="300" alt="Angular Logo" src="../assets/img/logo.png"/>      
+      </div>
+
+      <div class="col-sm-8">
+        <!-- Campo nombre -->
+        <h2>Agregar Datos: </h2>
+        <form class="form-horizontal">
+          <div class="form-group">  
+
+            <label for="nombre" class="control-label col-sm-2">
+              Nombre
+            </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="nombre"
+              name="nombre"[(ngModel)]="model.nombre"
+              placeholder="Ingrese un nombre"
+              >              
+            </div>
+          </div>
+          <!-- Campo puesto -->
+          <div class="form-group">
+            <label for="posicion" class="control-label col-sm-2">
+              Puesto
+            </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="posicion"
+              name="posicion" [(ngModel)]="model.posicion"
+              placeholder="Puesto del empleado"
+              >              
+            </div>
+          </div>
+         <!--Campo email  -->
+          <div class="form-group">
+            <label for="email" class="control-label col-sm-2">
+              Email
+            </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="email"
+              name="email" [(ngModel)]="model.email"
+              placeholder="Email"
+              >              
+            </div>
+          </div>
+        <!-- Boton  -->
+          <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2">
+              <button type="submit" class="btn btn-success" (click)="agregarEmpleado()"> Guardar </button>
+
+            </div>
+          </div>  
+
+
+        </form>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-sm-8">
+        <h2>Leer datos</h2>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Puesto</th>
+              <th>Email</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let empleado of empleados; let i = index"> 
+              <td> {{ empleado.nombre }} </td>
+              <td> {{ empleado.posicion }} </td>
+              <td> {{ empleado.email }} </td>
+              <td>
+                <button (click)="editarEmpleado(i)" class="btn btn-success"> Editar </button>
+                <button (click)="borrarEmpleado(i)" class="btn btn-danger"> Borrar </button>
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>      
+       
+      <div class="col-sm-4" [hidden] = "ocultaFormActualizar">
+        <h2>Actualizar datos</h2>
+        <!-- Campo nombre -->
+        
+        <form class="form-horizontal">
+          <div class="form-group">  
+
+            <label for="nombre" class="control-label col-sm-2">
+              Nombre
+            </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="nombre2"
+              name="nombre"[(ngModel)]="model2.nombre"
+              placeholder="Ingrese un nombre"
+              >              
+            </div>
+          </div>
+          <!-- Campo puesto -->
+          <div class="form-group">
+            <label for="posicion" class="control-label col-sm-2">
+              Puesto
+            </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="posicion2"
+              name="posicion" [(ngModel)]="model2.posicion"
+              placeholder="Puesto del empleado"
+              >              
+            </div>
+          </div>
+          <!--Campo email  -->
+          <div class="form-group">
+            <label for="email" class="control-label col-sm-2">
+              Email
+            </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="email2"
+              name="email" [(ngModel)]="model2.email"
+              placeholder="Email"
+              >              
+            </div>
+          </div>
+        <!-- Boton  -->
+          <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2">
+              <button type="submit" class="btn btn-success" (click)="actualizarEpleado()"> Guardar </button>
+
+            </div>
+          </div>
+
+
+        </form>
+      </div>
+
+      
+    </div>
+
+  </div>
+  
+  
+  
+ 
